@@ -24,7 +24,7 @@
 <br/><br/>
 
 <label for="${AttributeConst.EMP_PASS.getValue()}">パスワード</label><br/>
-<input type="password" name="${AttributeConst.EMP_PASS.getValue()}" id="${AttributeConst.EMP_NAME.getValue()}" value="${employee.name}" />
+<input type="password" name="${AttributeConst.EMP_PASS.getValue()}" id="${AttributeConst.EMP_PASS.getValue()}" />
 <br/><br/>
 
 <label for="${AttributeConst.EMP_ADMIN_FLG.getValue()}">権限</label><br/>
