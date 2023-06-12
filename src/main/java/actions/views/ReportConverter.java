@@ -30,11 +30,11 @@ public class ReportConverter {
     /**
      * DTOモデルのインスタンスからViewモデルのインスタンスを作成する
      * @param r Reportのインスタンス
-     * @qreturn ReportViewのインスタンス
+     * @return ReportViewのインスタンス
      */
     public static ReportView toView(Report r) {
 
-        if(r == null) {
+        if (r == null) {
             return null;
         }
 

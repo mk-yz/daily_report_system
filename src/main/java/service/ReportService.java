@@ -53,7 +53,7 @@ public class ReportService extends ServiceBase{
      */
     public List<ReportView> getAllPerPage(int page) {
 
-        List<Report> reports = em.createNamedQuery(JpaConst.Q_EMP_GET_ALL, Report.class)
+        List<Report> reports = em.createNamedQuery(JpaConst.Q_REP_GET_ALL, Report.class)
                 .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
                 .setMaxResults(JpaConst.ROW_PER_PAGE)
                 .getResultList();
@@ -93,7 +93,7 @@ public class ReportService extends ServiceBase{
             createInternal(rv);
         }
 
-        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        // バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
         return errors;
     }
 
@@ -104,19 +104,19 @@ public class ReportService extends ServiceBase{
      */
     public List<String> update(ReportView rv) {
 
-        //バリデーションを行う
+        // バリデーションを行う
         List<String> errors = ReportValidator.validate(rv);
 
         if (errors.size() == 0) {
 
-            //更新日時を現在時刻に設定
+            // 更新日時を現在時刻に設定
             LocalDateTime ldt = LocalDateTime.now();
             rv.setUpdatedAt(ldt);
 
             updateInternal(rv);
         }
 
-        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        // バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
         return errors;
     }
 

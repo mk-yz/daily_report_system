@@ -44,7 +44,7 @@ public class LoginFilter implements Filter {
         String servletPath = ((HttpServletRequest) request).getServletPath();
 
         if(servletPath.matches("/css.*")) {
-            // cssフォルダ内は認証処理から除外する
+            // CSSフォルダ内は認証処理から除外する
             chain.doFilter(request, response);
 
         } else {
@@ -54,18 +54,21 @@ public class LoginFilter implements Filter {
             String action = request.getParameter(ForwardConst.ACT.getValue());
             String command = request.getParameter(ForwardConst.CMD.getValue());
 
-            //セッションからログインしている従業員の情報を取得
+            // セッションからログインしている従業員の情報を取得
             EmployeeView ev = (EmployeeView) session.getAttribute(AttributeConst.LOGIN_EMP.getValue());
 
-            if(ev == null) {
+            if (ev == null) {
                 // 未ログイン
 
-                if(!(ForwardConst.ACT_AUTH.getValue().equals(action) && (ForwardConst.CMD_SHOW_LOGIN.getValue().equals(command) || ForwardConst.CMD_LOGIN.getValue().equals(command)))) {
+                if(!(ForwardConst.ACT_AUTH.getValue().equals(action)
+                        && (ForwardConst.CMD_SHOW_LOGIN.getValue().equals(command)
+                                || ForwardConst.CMD_LOGIN.getValue().equals(command)))) {
 
                     // ログインページの表示またはログイン実行以外はログインページにリダイレクト
-                    ((HttpServletResponse) response).sendRedirect(contextPath
-                            + "?action=" + ForwardConst.ACT_AUTH.getValue()
-                            + "&command=" + ForwardConst.CMD_SHOW_LOGIN.getValue());
+                    ((HttpServletResponse) response).sendRedirect(
+                            contextPath
+                                    + "?action=" + ForwardConst.ACT_AUTH.getValue()
+                                    + "&command=" + ForwardConst.CMD_SHOW_LOGIN.getValue());
                     return;
                 }
             } else {
@@ -76,9 +79,10 @@ public class LoginFilter implements Filter {
 
                     if(ForwardConst.CMD_SHOW_LOGIN.getValue().equals(command)) {
                         // ログインページの表示はトップ画面にリダイレクト
-                        ((HttpServletResponse) response).sendRedirect(contextPath
-                                + "?action=" + ForwardConst.ACT_TOP.getValue()
-                                + "&command=" + ForwardConst.CMD_INDEX.getValue());
+                        ((HttpServletResponse) response).sendRedirect(
+                                contextPath
+                                        + "?action=" + ForwardConst.ACT_TOP.getValue()
+                                        + "&command=" + ForwardConst.CMD_INDEX.getValue());
                         return;
 
                     } else if(ForwardConst.CMD_LOGOUT.getValue().equals(command)) {
