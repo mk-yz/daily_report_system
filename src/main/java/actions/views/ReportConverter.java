@@ -56,7 +56,7 @@ public class ReportConverter {
     public static List<ReportView> toViewList(List<Report> list) {
         List<ReportView> evs = new ArrayList<>();
 
-        for (Report r : list) {
+        for(Report r : list) {
             evs.add(toView(r));
         }
 
